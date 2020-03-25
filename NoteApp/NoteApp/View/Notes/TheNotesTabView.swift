@@ -61,7 +61,8 @@ struct TheNotesTabView: View {
                             NoteRow(notes: note)
                         }.sheet(isPresented: self.$showingDetail) {NoteDetail(note: note)}
                     }
-                }.onDelete(perform: delete)
+                }.onMove(perform: move)
+                 .onDelete(perform: delete)
                 
             }
         }
@@ -75,6 +76,10 @@ struct TheNotesTabView: View {
         offsets.forEach{
             manager.notes[$0].isDeleted = true
         }
+    }
+    
+    func move(from offset: IndexSet, to index: Int) {
+        manager.notes.move(fromOffsets: offset, toOffset: index)
     }
     
 }

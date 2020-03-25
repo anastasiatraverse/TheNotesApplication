@@ -23,6 +23,7 @@ struct Login: UIViewRepresentable {
         button.delegate = context.coordinator
         return button
     }
+    
     func updateUIView(_ uiView: FBLoginButton, context: UIViewRepresentableContext<Login>) {
         
     }
