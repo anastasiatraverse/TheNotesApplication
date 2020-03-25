@@ -15,6 +15,7 @@ struct TheFavouriteNotesTabView: View{
     
     @State private var showingAddScreen  = false
     @State private var showingNoteDetail = false
+    @State private var showingUserProf   = false
     
     var body: some View{
         VStack{
@@ -22,15 +23,32 @@ struct TheFavouriteNotesTabView: View{
                 Text("The Favourite Notes")
                     .font(.system(size:35))
                     .bold()
+                
                 Spacer()
+                
                 Button(action:{
                     self.showingAddScreen.toggle()
                 }){
                     Image(systemName: "plus")
-                }.padding(2)
-                .sheet(isPresented: $showingAddScreen){
-                    AddNew(manager: self.manager)
+                        .resizable()
+                        .frame(width: 25.0, height: 25.0)
                 }
+                    .padding(2)
+                    .sheet(isPresented: $showingAddScreen){
+                        AddNew(manager: self.manager)
+                    }
+                
+                Button(action:{
+                    self.showingUserProf.toggle()
+                }){
+                  Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 35.0, height: 35.0)
+                }
+                    .sheet(isPresented: $showingUserProf){
+                        UserProfileView()
+                    }
+                
             }.padding(5)
             List{
                 ForEach(self.manager.notes){ note in

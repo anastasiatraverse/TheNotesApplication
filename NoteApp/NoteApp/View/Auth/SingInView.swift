@@ -10,6 +10,10 @@ import SwiftUI
 import Firebase
 import FBSDKLoginKit
 
+/* -- TO DO --
+ - User Profile View
+ - Finish Facebook View
+*/
 
 struct SingInView: View{
     @State private var isSingUp      = false
