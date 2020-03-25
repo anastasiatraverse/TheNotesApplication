@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>110150632280-6u563m6n0ed8242d5e29cg2j2cou21o3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.110150632280-6u563m6n0ed8242d5e29cg2j2cou21o3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzUCzt2mKyvU5Hvoc9FmR4ymBwWVoi2a8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>110150632280</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>aTraverse.NoteApp</string>
+	<key>PROJECT_ID</key>
+	<string>thenotesapp-e44c4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>thenotesapp-e44c4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:110150632280:ios:65c981d539f7f9cd67db2d</string>
+	<key>DATABASE_URL</key>
+	<string>https://thenotesapp-e44c4.firebaseio.com</string>
+</dict>
+</plist>
