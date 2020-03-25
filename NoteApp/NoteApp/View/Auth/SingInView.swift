@@ -19,6 +19,7 @@ struct SingInView: View{
     @State private var isSingUp      = false
     @State private var isSingIn      = false
     @State private var isSingInAlert = false
+    @State private var loged:Bool    = false
     
     @State var login:String    = ""
     @State var password:String = ""
@@ -50,8 +51,16 @@ struct SingInView: View{
                     if self.login.count == 0 || self.password.count == 0{
                         self.isSingInAlert = true
                     }
+                    for i in self.users{
+                        if i.email == self.login && i.password == self.password{
+                            print("User should enter")
+                            self.loged = true
+                        }
+                    }
                     if self.login == self.testlogin && self.password == self.testpass{
                         print("Validate")
+                        
+                        // TO DO - ADD TRANSITION 
                     }
                 }){
                     Text("SIGN IN")
@@ -64,6 +73,7 @@ struct SingInView: View{
                     .foregroundColor(.white)
                     .background(Color.green)
                     .cornerRadius(12)
+                
                 
                 
                 Button(action:{
@@ -83,7 +93,7 @@ struct SingInView: View{
                     .cornerRadius(12)
                 
                 NavigationLink(destination: NotesView(manager: NoteManager())){
-                    Text("Continue without Auth")
+                    Text("Continue without Sing In")
                         .padding(5)
                 }
                 .padding(5)
@@ -93,7 +103,6 @@ struct SingInView: View{
                 
             }.navigationBarBackButtonHidden(true)
              .navigationBarHidden(true)
-            
         }
         
     }

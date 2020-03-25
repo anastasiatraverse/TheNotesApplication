@@ -46,7 +46,7 @@ struct TheDeletedNotesTabView: View{
                     .frame(width: 35.0, height: 35.0)
                 }
                     .sheet(isPresented: $showingUserProf){
-                        UserProfileView()
+                        UserProfileView(manager: self.manager)
                     }
             }.padding(5)
             

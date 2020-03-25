@@ -33,8 +33,11 @@ struct SingUpView: View{
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(10)
             Button(action: {
-                print(self.emailSingUp)
-                print(self.passwordSingUp)
+                let newUser = User(context: self.moc)
+                newUser.email    = self.emailSingUp
+                newUser.name     = self.nameSingUp
+                newUser.password = self.passwordSingUp
+                try? self.moc.save()
                 self.presentationMode.wrappedValue.dismiss()
             }){
                 Text("Sign UP")
