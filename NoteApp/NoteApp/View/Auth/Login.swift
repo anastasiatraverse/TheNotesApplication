@@ -11,19 +11,19 @@ import SwiftUI
 import Firebase
 import FBSDKLoginKit
 
-struct login: UIViewRepresentable {
+struct Login: UIViewRepresentable {
     
-    func makeCoordinator() -> login.coordinator {
-        return login.coordinator()
+    func makeCoordinator() -> Login.coordinator {
+        return Login.coordinator()
     }
      
-    func makeUIView(context: UIViewRepresentableContext<login>) -> FBLoginButton{
+    func makeUIView(context: UIViewRepresentableContext<Login>) -> FBLoginButton{
         let button = FBLoginButton()
         button.permissions = ["email"]
         button.delegate = context.coordinator
         return button
     }
-    func updateUIView(_ uiView: FBLoginButton, context: UIViewRepresentableContext<login>) {
+    func updateUIView(_ uiView: FBLoginButton, context: UIViewRepresentableContext<Login>) {
         
     }
      

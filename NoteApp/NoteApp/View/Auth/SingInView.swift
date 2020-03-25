@@ -30,8 +30,7 @@ struct SingInView: View{
     let testlogin = "admin"
     let testpass = "123"
     
-    var body: some View{
-        
+    var body: some View {
         NavigationView{
             VStack(spacing: 10){
                 Text("Sign In")
@@ -61,6 +60,7 @@ struct SingInView: View{
                         Alert(title: Text("Ooooops"), message: Text("You Should enter \n Login and Password"), dismissButton: .default(Text("Ok"))
                     )})
                     .padding(20)
+                    .frame(width: 300, height: 60)
                     .foregroundColor(.white)
                     .background(Color.green)
                     .cornerRadius(12)
@@ -73,8 +73,13 @@ struct SingInView: View{
                 }.sheet(isPresented: $isSingUp){
                     SingUpView()
                 }.padding(20)
+                    .frame(width: 300, height: 60)
                     .foregroundColor(.white)
                     .background(Color.red)
+                    .cornerRadius(12)
+                
+                Login()
+                    .frame(width: 300, height: 60)
                     .cornerRadius(12)
                 
                 NavigationLink(destination: NotesView(manager: NoteManager())){
@@ -84,9 +89,13 @@ struct SingInView: View{
                 .padding(5)
                 .buttonStyle(PlainButtonStyle())
                 
+                
+                
             }.navigationBarBackButtonHidden(true)
              .navigationBarHidden(true)
+            
         }
+        
     }
 }
 

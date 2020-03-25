@@ -14,6 +14,7 @@ struct AddNew: View {
     var pickerType = ["Note", "To Do", "Reminder"]
     
     @Environment(\.presentationMode) var presentationMode
+    
 
     @State var noteTitle:   String = ""
     @State var text:        String = ""

@@ -11,7 +11,6 @@ import SwiftUI
 struct TheNotesTabView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    
     @ObservedObject var manager: NoteManager
     
     @State private var showingAddScreen = false
