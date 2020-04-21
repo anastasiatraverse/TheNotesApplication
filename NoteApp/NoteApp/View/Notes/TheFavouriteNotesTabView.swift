@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct TheFavouriteNotesTabView: View{
+    let userInfo : [String]
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var manager: NoteManager
@@ -46,7 +47,7 @@ struct TheFavouriteNotesTabView: View{
                     .frame(width: 35.0, height: 35.0)
                 }
                     .sheet(isPresented: $showingUserProf){
-                        UserProfileView(manager: self.manager)
+                        UserProfileView(userInfo: self.userInfo,manager: self.manager)
                     }
                 
             }.padding(5)
@@ -67,6 +68,6 @@ struct TheFavouriteNotesTabView: View{
 
 struct TheFavouriteNotesTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TheFavouriteNotesTabView(manager: NoteManager())
+        TheFavouriteNotesTabView(userInfo: ["","",""], manager: NoteManager())
     }
 }

@@ -28,8 +28,6 @@ struct NoteDetail: View {
                 }
             }
             Text(note.text)
-            
-            
         }
     }
 }

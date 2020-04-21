@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct SingUpView: View{
     
@@ -38,6 +39,7 @@ struct SingUpView: View{
                 newUser.name     = self.nameSingUp
                 newUser.password = self.passwordSingUp
                 try? self.moc.save()
+                
                 self.presentationMode.wrappedValue.dismiss()
             }){
                 Text("Sign UP")

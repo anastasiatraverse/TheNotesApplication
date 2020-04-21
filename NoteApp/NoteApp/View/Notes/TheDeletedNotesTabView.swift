@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct TheDeletedNotesTabView: View{
+    let userInfo : [String]
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var showingAddScreen  = false
@@ -46,7 +47,7 @@ struct TheDeletedNotesTabView: View{
                     .frame(width: 35.0, height: 35.0)
                 }
                     .sheet(isPresented: $showingUserProf){
-                        UserProfileView(manager: self.manager)
+                        UserProfileView(userInfo: self.userInfo, manager: self.manager)
                     }
             }.padding(5)
             
@@ -70,6 +71,6 @@ struct TheDeletedNotesTabView: View{
 
 struct TheDeletedNotesTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TheDeletedNotesTabView(manager: NoteManager())
+        TheDeletedNotesTabView(userInfo: ["","",""],manager: NoteManager())
     }
 }

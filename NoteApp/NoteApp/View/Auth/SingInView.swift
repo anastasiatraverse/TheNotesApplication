@@ -7,13 +7,10 @@
 //
 
 import SwiftUI
+import CoreData
 import Firebase
 import FBSDKLoginKit
 
-/* -- TO DO --
- - User Profile View
- - Finish Facebook View
-*/
 
 struct SingInView: View{
     @State private var isSingUp      = false
@@ -24,16 +21,15 @@ struct SingInView: View{
     @State var login:String    = ""
     @State var password:String = ""
     
+    @State var userInfo: [String] = []
+    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: User.entity(), sortDescriptors: []) var users: FetchedResults<User>
-    
-
-    let testlogin = "admin"
-    let testpass = "123"
     
     var body: some View {
         NavigationView{
             VStack(spacing: 10){
+                
                 Text("Sign In")
                     .font(.system(size:40))
                     .padding(5)
@@ -48,18 +44,16 @@ struct SingInView: View{
                 
                 
                 Button(action: {
-                    if self.login.count == 0 || self.password.count == 0{
-                        self.isSingInAlert = true
-                    }
                     for i in self.users{
                         if i.email == self.login && i.password == self.password{
-                            print("User should enter")
-                            self.loged = true
+                            self.userInfo.append(i.name!)
+                            self.userInfo.append(i.email!)
+                            self.userInfo.append(i.password!)
+                            self.loged.toggle()
                         }
                     }
-                    if self.login == self.testlogin && self.password == self.testpass{
-                        print("Validate")
-                        // TO DO - ADD TRANSITION 
+                    if self.login.count == 0 || self.password.count == 0{
+                        self.isSingInAlert.toggle()
                     }
                 }){
                     Text("SIGN IN")
@@ -74,13 +68,16 @@ struct SingInView: View{
                     .cornerRadius(12)
                 
                 
+                NavigationLink(destination:  NotesView(userInfo: self.userInfo,manager: NoteManager()), isActive: $loged) {
+                   Text("")
+               }
                 
                 Button(action:{
                     self.isSingUp.toggle()
                 }){
                     Text("SIGN UP")
                 }.sheet(isPresented: $isSingUp){
-                    SingUpView()
+                    SingUpView().environment(\.managedObjectContext, self.moc)
                 }.padding(20)
                     .frame(width: 300, height: 60)
                     .foregroundColor(.white)
@@ -91,13 +88,16 @@ struct SingInView: View{
                     .frame(width: 300, height: 60)
                     .cornerRadius(12)
                 
-                NavigationLink(destination: NotesView(manager: NoteManager())){
+                NavigationLink(destination: NotesView(userInfo: userInfo, manager: NoteManager())){
                     Text("Continue without Sing In")
                         .padding(5)
                 }
                 .padding(5)
                 .buttonStyle(PlainButtonStyle())
-            }.navigationBarBackButtonHidden(true)
+                
+                
+                }
+             .navigationBarBackButtonHidden(true)
              .navigationBarHidden(true)
         }
         
@@ -105,9 +105,9 @@ struct SingInView: View{
 }
 
 
-struct SingInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SingInView()
-    }
-}
+//struct SingInView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SingInView()
+//    }
+//}
 

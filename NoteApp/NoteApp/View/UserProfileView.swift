@@ -11,18 +11,12 @@ import SwiftUI
 
 
 struct UserProfileView: View {
-    
-    // To Do - get user info from SING UP VIEW or Facebook
+        
+    let userInfo: [String]
     let manager : NoteManager
-    
-    @State var userName     :String = ""
-    @State var userEmail    :String = ""
-    @State var userBirthday :String = ""
     
     @State var userImage       :Image?  = nil
     @State var showCaptureImage: Bool   = false
-    
-    
     
     @State var showUserInfo: Bool = false
     @State var showNoteInfo: Bool = false
@@ -60,13 +54,13 @@ struct UserProfileView: View {
                         }
                         
                         if(showUserInfo){
-                            Text("User Name:     \(userName)")
+                            Text("User Name:     \(self.userInfo[0])")
                                 .font(.system(size:25))
                                 .padding(5)
-                            Text("User Email:    \(userEmail)")
+                            Text("User Email:    \(self.userInfo[1])")
                                 .font(.system(size:25))
                                 .padding(5)
-                            Text("User Birthday: \(userBirthday)")
+                            Text("User Birthday: \(self.userInfo[2])")
                                 .font(.system(size:25))
                                 .padding(5)
                         }
@@ -113,8 +107,8 @@ struct UserProfileView: View {
     
 }
 
-struct UserProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserProfileView(manager: NoteManager())
-    }
-}
+//struct UserProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserProfileView(["","",""],manager: NoteManager())
+//    }
+//}

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct TheNotesTabView: View {
+    let userInfo : [String]
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var manager: NoteManager
@@ -46,7 +47,7 @@ struct TheNotesTabView: View {
                     .frame(width: 35.0, height: 35.0)
                 }
                     .sheet(isPresented: $showingUserProf){
-                        UserProfileView(manager: self.manager)
+                        UserProfileView(userInfo: self.userInfo, manager: self.manager)
                     }
                 
             }.padding(5)
@@ -87,6 +88,6 @@ struct TheNotesTabView: View {
 
 struct TheNotesTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TheNotesTabView(manager: NoteManager())
+        TheNotesTabView(userInfo: ["","",""], manager: NoteManager())
     }
 }

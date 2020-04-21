@@ -10,22 +10,23 @@ import SwiftUI
 
 struct NotesView: View {
     
+    let userInfo : [String]
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var manager: NoteManager
     var body: some View {
         
         TabView{
-            TheNotesTabView(manager: manager).tabItem{
+            TheNotesTabView(userInfo: userInfo, manager: manager).tabItem{
                 Image(systemName: "tray.full.fill")
                 Text("Notes")
             }
                 
-            TheFavouriteNotesTabView(manager: manager).tabItem{
+            TheFavouriteNotesTabView(userInfo: userInfo, manager: manager).tabItem{
                 Image(systemName: "star.fill")
                 Text("Favourite")
             }
                 
-            TheDeletedNotesTabView(manager: manager).tabItem{
+            TheDeletedNotesTabView(userInfo: userInfo, manager: manager).tabItem{
                 Image(systemName: "trash.fill")
                 Text("Deleted")
             }
@@ -34,8 +35,9 @@ struct NotesView: View {
     }
 }
 
-struct NotesView_Previews: PreviewProvider {
-    static var previews: some View {
-        NotesView(manager: NoteManager())
-    }
-}
+//
+//struct NotesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NotesView(["","",""],manager: NoteManager())
+//    }
+//}
