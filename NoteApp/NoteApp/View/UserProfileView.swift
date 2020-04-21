@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+
+
 struct UserProfileView: View {
     
     // To Do - get user info from SING UP VIEW or Facebook
@@ -17,33 +19,96 @@ struct UserProfileView: View {
     @State var userEmail    :String = ""
     @State var userBirthday :String = ""
     
-    let totalFavourite = 0
-
+    @State var userImage       :Image?  = nil
+    @State var showCaptureImage: Bool   = false
     
-    // TO DO - EDIT ANIMATION
-    // TO DO - Add Notes Info
+    
+    
+    @State var showUserInfo: Bool = false
+    @State var showNoteInfo: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading){
-            Section{
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 50.0, height: 50.0)
-                Text("User Name").font(.system(size:35)).padding(5)
-                Text("User Email").font(.system(size:30)).padding(5)
-                Text("User Birthday").font(.system(size:30)).padding(5)
-            }.padding()
-            Spacer()
-            Section{
-                Text("Notes Info").font(.system(size:35)).padding(5)
-                Text("Total Notes Number: \(manager.notes.count)")
-                Text("Favourite Notes   : \(totalFavourite)")
-            }.padding()
+        ZStack{
+            VStack(alignment: .leading, content: {
+                Section{
+                        if (userImage != nil){
+                            userImage?
+                                .resizable()
+                                .frame(width:100.0, height:100.0)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.white, lineWidth: 4))
+                        }else{
+                            Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .frame(width: 100.0, height: 100.0)
+                            .gesture(
+                                TapGesture().onEnded{
+                                    self.showCaptureImage.toggle()
+                                }
+                            )
+                        }
+                    }
+                    
+                    VStack(alignment: .leading, content: {
+                        HStack{
+                            Text("User Info").font(.system(size:30))
+                            Image(systemName: showUserInfo ? "chevron.up" : "chevron.down")
+                                .resizable()
+                                .frame(width:10, height: 10)
+                        }.onTapGesture {
+                            self.showUserInfo.toggle()
+                        }
+                        
+                        if(showUserInfo){
+                            Text("User Name:     \(userName)")
+                                .font(.system(size:25))
+                                .padding(5)
+                            Text("User Email:    \(userEmail)")
+                                .font(.system(size:25))
+                                .padding(5)
+                            Text("User Birthday: \(userBirthday)")
+                                .font(.system(size:25))
+                                .padding(5)
+                        }
+                    })
+                        .padding(15)
+                        .background(LinearGradient(gradient: .init(colors: [.white, .gray]), startPoint: .top, endPoint: .bottom))
+                        .cornerRadius(20)
+                        .animation(.spring())
+                    
+                    VStack(alignment: .leading, content: {
+                        HStack{
+                            Text("User Info").font(.system(size:30))
+                            Image(systemName: showNoteInfo ? "chevron.up" : "chevron.down")
+                                .resizable()
+                                .frame(width:10, height: 10)
+                        }.onTapGesture {
+                            self.showNoteInfo.toggle()
+                        }
+                        if(showNoteInfo){
+                            Text("Notes Info")
+                                .font(.system(size:25))
+                                .padding(5)
+                            Text("Total Notes Number: \(manager.notes.count)")
+                                .font(.system(size:25))
+                                .padding(5)
+                            Text("Favourite Notes   : \(manager.calculateFavourite())")
+                                .font(.system(size:25))
+                                .padding(5)
+                            Text("Deleted Notes     : \(manager.calculateDeleted())")
+                                .font(.system(size:25))
+                                .padding(5)
+                        }
+                    })
+                        .padding(15)
+                        .background(LinearGradient(gradient: .init(colors: [.white, .gray]), startPoint: .top, endPoint: .bottom))
+                        .cornerRadius(20)
+                        .animation(.spring())
+            })
+            if (showCaptureImage) {
+              CaptureImageView(isShown: $showCaptureImage, image: $userImage)
+            }
         }
-        
-        
-        
-        
     }
     
 }

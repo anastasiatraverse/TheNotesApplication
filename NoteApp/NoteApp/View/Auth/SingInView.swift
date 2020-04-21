@@ -59,7 +59,6 @@ struct SingInView: View{
                     }
                     if self.login == self.testlogin && self.password == self.testpass{
                         print("Validate")
-                        
                         // TO DO - ADD TRANSITION 
                     }
                 }){
@@ -98,9 +97,6 @@ struct SingInView: View{
                 }
                 .padding(5)
                 .buttonStyle(PlainButtonStyle())
-                
-                
-                
             }.navigationBarBackButtonHidden(true)
              .navigationBarHidden(true)
         }
